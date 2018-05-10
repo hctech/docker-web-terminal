@@ -1,0 +1,2 @@
+DOCKER_HOST = "tcp://192.168.4.22:2375"
+CONTAINER_ID = "5c6cdc3d77d3"

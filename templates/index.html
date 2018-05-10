@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link rel="stylesheet" href="{{ url_for('static', filename='xterm/dist/xterm.css') }}">
+    <meta charset="UTF-8">
+    <title>docker web terminal</title>
+</head>
+<body>
+<div id="terminal"></div>
+<script src="{{ url_for('static', filename='js/jquery-1.12.4.js') }}"></script>
+<script src="{{ url_for('static', filename='xterm/dist/xterm.js') }}"></script>
+<script src="{{ url_for('static', filename='xterm/dist/addons/attach/attach.js') }}"></script>
+<script>
+    let term = new Terminal({cursorBlink: true});
+    term.open(document.getElementById('#terminal'));
+    term.writeln("welcome to use docker web terminal!");
+    let socket = new WebSocket('ws://127.0.0.1:5000/echo');
+    term.attach(socket);
+    socket.onclose = function () {
+        term.writeln("closed. Thank you for use!");
+    };
+</script>
+</body>
+</html>
